@@ -9,6 +9,4 @@ jobs:
         uses: actions/checkout@v2
       - name: Run app build
         run: make build
-      - name: Run lint
-        run: make lint
         
