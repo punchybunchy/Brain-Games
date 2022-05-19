@@ -1,0 +1,14 @@
+# file: .github/workflows/app-linter-check.yml
+name: Build app and check the app with linter
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository code
+        uses: actions/checkout@v2
+      - name: Run app build
+        run: make build
+      - name: Run lint
+        run: make lint
+        
