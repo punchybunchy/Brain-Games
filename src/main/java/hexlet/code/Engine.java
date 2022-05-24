@@ -6,7 +6,7 @@ public class Engine {
 
     public static void gameRun(String description, String[] questions, String[] answers) {
         int correctAnswers = 0; //amount of correct answers
-        int maxNumberCorrectAnswers = 3;
+        final int maxNumberCorrectAnswers = 3;
         int index = 0;
 
         Greet.inputName();
@@ -23,7 +23,9 @@ public class Engine {
                 correctAnswers += 1;
 
             } else {
-                System.out.println("'" + userAnswer + "' is wrong answer ;(. Correct answer was '" + answers[index] + "'");
+                System.out.println("'" + userAnswer
+                        + "' is wrong answer ;(. Correct answer was '"
+                        + answers[index] + "'");
                 System.out.println("Let's try again, " + Greet.getName());
                 correctAnswers = 0;
             }
