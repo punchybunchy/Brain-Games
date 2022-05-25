@@ -10,7 +10,7 @@ public class Greet {
         System.out.print("May I have your name? ");
         Scanner setName = new Scanner(System.in);
         name = setName.nextLine();
-        System.out.println("Hello " + name + "!");
+        System.out.println("Hello, " + name + "!");
     }
 
     public static String getName() {
