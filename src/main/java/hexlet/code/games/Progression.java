@@ -16,7 +16,6 @@ public class Progression {
 
     public static int[] progGenerator() {
         int startNumber = A + (int) (Math.random() * B); // progression starts from this number
-        //int remotePosition = (int) (Math.random() * C); //which position needs to remove
         int progressionStep = A + (int) (Math.random() * B); //on which value next item will be increased
         int[] progressionArr = new int[PROG_SIZE];
         progressionArr[0] = startNumber;
