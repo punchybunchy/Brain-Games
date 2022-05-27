@@ -31,13 +31,11 @@ public class Engine {
                         + "' is wrong answer ;(. Correct answer was '"
                         + answer + "'");
                 System.out.println("Let's try again, " + userName);
-                correctAnswers = 0;
+                break;
             }
         }
         if (correctAnswers == numberOfAnswersToWin) {
             System.out.println("Congratulations, " + userName + "!");
-        } else {
-            System.out.println("So sad, " + userName + "you've lost :( try again");
         }
     }
 }
