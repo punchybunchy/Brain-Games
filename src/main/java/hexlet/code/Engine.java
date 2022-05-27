@@ -4,38 +4,40 @@ import java.util.Scanner;
 
 public class Engine {
 
-    public static void gameRun(String description, String[] questions, String[] answers) {
+    public static void gameRun(String gameDescription, String[][] tasks) {
+        final int numberOfAnswersToWin = 3;
         int correctAnswers = 0; //amount of correct answers
-        final int maxNumberCorrectAnswers = 3;
-        int index = 0;
 
-        Greet.inputName();
-        System.out.println(description);
+        System.out.print("May I have your name? ");
+        Scanner setName = new Scanner(System.in);
+        var userName = setName.nextLine();
+        System.out.println("Hello, " + userName + "!");
+        System.out.println(gameDescription);
 
-        do {
-            System.out.println("Question: " + questions[index]);
+        for (String[] task : tasks) {
+            String question = task[0];
+            String answer = task[1];
+
+            System.out.println("Question: " + question);
             System.out.print("Your answer: ");
             Scanner inputAnswer = new Scanner(System.in);
             String userAnswer = inputAnswer.nextLine();
 
-            if (userAnswer.equals(answers[index])) {
+            if (userAnswer.equals(answer)) {
                 System.out.println("Correct!");
                 correctAnswers += 1;
-
             } else {
                 System.out.println("'" + userAnswer
                         + "' is wrong answer ;(. Correct answer was '"
-                        + answers[index] + "'");
-                System.out.println("Let's try again, " + Greet.getName());
+                        + answer + "'");
+                System.out.println("Let's try again, " + userName);
                 correctAnswers = 0;
             }
-
-            index++;
-
-        } while (correctAnswers < maxNumberCorrectAnswers);
-
-        System.out.println("Congratulations, " + Greet.getName() + "!");
+        }
+        if (correctAnswers == numberOfAnswersToWin) {
+            System.out.println("Congratulations, " + userName + "!");
+        } else {
+            System.out.println("So sad, " + userName + "you've lost :( try again");
+        }
     }
-
-
 }

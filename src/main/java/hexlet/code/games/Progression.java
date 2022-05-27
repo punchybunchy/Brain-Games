@@ -1,48 +1,48 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
-
-import java.util.Arrays;
+import hexlet.code.Utils;
 
 public class Progression {
-    static final int A = 1;
-    static final int B = 10;
-    static final int C = 10;
-    static final int ARR_SIZE = 100;
-    static final int PROG_SIZE = 10;
-    private static String[] questions  = new String[ARR_SIZE];
-    private static String[] answers = new String[ARR_SIZE];
-    private static String description = "What number is missing in the progression?";
 
-    public static int[] progGenerator() {
-        int startNumber = A + (int) (Math.random() * B); // progression starts from this number
-        int progressionStep = A + (int) (Math.random() * B); //on which value next item will be increased
-        int[] progressionArr = new int[PROG_SIZE];
-        progressionArr[0] = startNumber;
+    public static String[] progGenerator(int startNumber, int progressionStep, int progressionLength,
+                                         int remotePosition) {
+        int[] tempArray = new int[progressionLength];
+        String[] progressionArr = new String[progressionLength];
+        tempArray[0] = startNumber;
+        progressionArr[0] = Integer.toString(tempArray[0]);
 
-        for (int i = 1; i < PROG_SIZE; i++) {
-            progressionArr[i] = progressionArr[i - 1] + progressionStep;
+        for (int item = 1; item < progressionLength; item++) {
+            tempArray[item] = tempArray[item - 1] + progressionStep;
+            progressionArr[item] = Integer.toString(tempArray[item]);
         }
+        progressionArr[remotePosition] = "..";
         return progressionArr;
     }
 
     public static void runProgression() {
+        final int parameter1 = 1; //constant to define the minimum of a random number, can be modified
+        final int parameter2 = 10; //constant to define the maximum of power of number, can be modified
+        final int parameter3 = 0; //constant to define a random number generator to remote position in progression
+        final int parameter4 = 9; //constant to define  random number generator to remote position in progression
+        final int progressionLength = 10;
+        final int amountOfGameRounds = 3;
+        final int questionAndAnswer = 2;
+        final String gameDescription = "What number is missing in the progression?";
 
-        for (int index = 0; index < B; index++) {
+        String[][] tasks = new String[amountOfGameRounds][questionAndAnswer];
+        for (int round = 0; round < amountOfGameRounds; round++) {
+            int startNumber = Utils.getRandomNumber(parameter1, parameter2);
+            int progressionStep = Utils.getRandomNumber(parameter1, parameter2);
+            int remotePosition = Utils.getRandomNumber(parameter3, parameter4);
 
-            int remotePosition = (int) (Math.random() * C); //which position needs to remove
+            var question = String.join(" ", progGenerator(startNumber, progressionStep,
+                                                            progressionLength, remotePosition));
+            var answer = Integer.toString(startNumber + progressionStep * remotePosition);
 
-            String tempStr = Arrays.toString(progGenerator()); //convert int array to temporary string
-            String[] tempArr = tempStr.substring(1, tempStr.length() - 1).split(", ");
-
-            //remove special symbol "[" "," "]" and convert string to a temporary string array
-
-            answers[index] = tempArr[remotePosition];
-            tempArr[remotePosition] = ".."; //replace and change to ".." one random number
-            tempStr = Arrays.toString(tempArr);
-            questions[index] = tempStr.substring(1, tempStr.length() - 1)
-                    .replaceAll(", ", " "); //replace "," and "[", "]"
+            tasks[round][0] = question;
+            tasks[round][1] = answer;
         }
-        Engine.gameRun(description, questions, answers);
+        Engine.gameRun(gameDescription, tasks);
     }
 }

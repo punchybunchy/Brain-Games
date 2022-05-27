@@ -1,26 +1,27 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.Utils;
 
 public class Even {
-    static final int A = 1; //constant to define the minimum of a random number, can be modified
-    static final int B = 10; //constant to define the maximum of power of number, can be modified
-    static final int ARR_SIZE = 100;
-    private static String[] questions = new String[ARR_SIZE]; // 100 questions max value of a questions pull
-    private static String[] answers = new String[ARR_SIZE];
-
-    private static String description = "Answer 'yes' if number even otherwise answer 'no'.";
 
     public static void runEven() {
-        for (int i = 0; i < ARR_SIZE; i++) {
-            int randomNumber = A + (int) (Math.random() * B);
-            questions[i] = Integer.toString(randomNumber);
-            if (randomNumber % 2 == 0) {
-                answers[i] = "yes";
-            } else {
-                answers[i] = "no";
-            }
+        final int parameter1 = 1; //constant to define the minimum of a random number, can be modified
+        final int parameter2 = 10; //constant to define the maximum of power of number, can be modified
+        final int amountOfGameRounds = 3;
+        final int questionAndAnswer = 2;
+        final String gameDescription = "Answer 'yes' if number even otherwise answer 'no'.";
+
+        String[][] tasks = new String[amountOfGameRounds][questionAndAnswer];
+        for (int round = 0; round < amountOfGameRounds; round++) {
+            var question = Utils.getRandomNumber(parameter1, parameter2);
+            var answer = "";
+
+            answer = (question % 2 == 0) ? "yes" : "no";
+
+            tasks[round][0] = Integer.toString(question);
+            tasks[round][1] = answer;
         }
-        Engine.gameRun(description, questions, answers);
+        Engine.gameRun(gameDescription, tasks);
     }
 }

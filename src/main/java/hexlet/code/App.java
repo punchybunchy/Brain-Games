@@ -10,6 +10,13 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
+        final int exit = 0;
+        final int greet = 1;
+        final int even = 2;
+        final int calc = 3;
+        final int gcd = 4;
+        final int progression = 5;
+        final int prime = 6;
 
         System.out.println("""
                 Please enter the game number and press Enter.
@@ -23,17 +30,45 @@ public class App {
 
         Scanner selectGame = new Scanner(System.in);
         int gameId = selectGame.nextInt();
-        String gameChose = Integer.toString(gameId);
 
-        switch (gameChose) {
-            case "1" -> Greet.inputName();
-            case "2" -> Even.runEven();
-            case "3" -> Calc.runCalc();
-            case "4" -> GCD.runGCD();
-            case "5" -> Progression.runProgression();
-            case "6" -> Prime.runPrime();
-            default -> {
+        switch (gameId) {
+            case greet -> {
+                System.out.println("Your choice: " + gameId);
+                System.out.println("\n" + "Welcome to the Brain Games!");
+                Cli.inputName();
             }
+            case even -> {
+                System.out.println("Your choice: " + gameId);
+                System.out.println("\n" + "Welcome to the Brain Games!");
+                Even.runEven();
+            }
+            case calc -> {
+                System.out.println("Your choice: " + gameId);
+                System.out.println("\n" + "Welcome to the Brain Games!");
+                Calc.runCalc();
+            }
+            case gcd -> {
+                System.out.println("Your choice: " + gameId);
+                System.out.println("\n" + "Welcome to the Brain Games!");
+                GCD.runGCD();
+            }
+            case progression -> {
+                System.out.println("Your choice: " + gameId);
+                System.out.println("\n" + "Welcome to the Brain Games!");
+                Progression.runProgression();
+            }
+            case prime -> {
+                System.out.println("Your choice: " + gameId);
+                System.out.println("\n" + "Welcome to the Brain Games!");
+                Prime.runPrime();
+            }
+            case exit -> {
+                System.out.println("Your choice: " + gameId);
+                System.out.println("\n" + "Exit");
+            }
+            default -> System.out.println("Please retry and make sure the correct number is selected");
+
         }
+        selectGame.close();
     }
 }
