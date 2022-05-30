@@ -30,40 +30,28 @@ public class App {
 
         Scanner selectGame = new Scanner(System.in);
         int gameId = selectGame.nextInt();
+        System.out.println("Your choice: " + gameId);
 
         switch (gameId) {
             case greet -> {
-                System.out.println("Your choice: " + gameId);
-                System.out.println("\n" + "Welcome to the Brain Games!");
                 Cli.inputName();
             }
             case even -> {
-                System.out.println("Your choice: " + gameId);
-                System.out.println("\n" + "Welcome to the Brain Games!");
                 Even.runEven();
             }
             case calc -> {
-                System.out.println("Your choice: " + gameId);
-                System.out.println("\n" + "Welcome to the Brain Games!");
                 Calc.runCalc();
             }
             case gcd -> {
-                System.out.println("Your choice: " + gameId);
-                System.out.println("\n" + "Welcome to the Brain Games!");
                 GCD.runGCD();
             }
             case progression -> {
-                System.out.println("Your choice: " + gameId);
-                System.out.println("\n" + "Welcome to the Brain Games!");
                 Progression.runProgression();
             }
             case prime -> {
-                System.out.println("Your choice: " + gameId);
-                System.out.println("\n" + "Welcome to the Brain Games!");
                 Prime.runPrime();
             }
             case exit -> {
-                System.out.println("Your choice: " + gameId);
                 System.out.println("\n" + "Exit");
             }
             default -> System.out.println("Please retry and make sure the correct number is selected");

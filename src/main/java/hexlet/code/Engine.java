@@ -4,10 +4,11 @@ import java.util.Scanner;
 
 public class Engine {
 
-    public static void gameRun(String gameDescription, String[][] tasks) {
-        final int numberOfAnswersToWin = 3;
-        int correctAnswers = 0; //amount of correct answers
+    public static final int ROUNDS = 3;
+    public static final int QUESTION_AND_ANSWER = 2;
 
+    public static void gameRun(String gameDescription, String[][] tasks) {
+        System.out.println("\n" + "Welcome to the Brain Games!");
         System.out.print("May I have your name? ");
         Scanner setName = new Scanner(System.in);
         var userName = setName.nextLine();
@@ -25,17 +26,14 @@ public class Engine {
 
             if (userAnswer.equals(answer)) {
                 System.out.println("Correct!");
-                correctAnswers += 1;
             } else {
                 System.out.println("'" + userAnswer
                         + "' is wrong answer ;(. Correct answer was '"
                         + answer + "'");
                 System.out.println("Let's try again, " + userName + "!");
-                break;
+                return;
             }
         }
-        if (correctAnswers == numberOfAnswersToWin) {
-            System.out.println("Congratulations, " + userName + "!");
-        }
+        System.out.println("Congratulations, " + userName + "!");
     }
 }

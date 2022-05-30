@@ -5,30 +5,29 @@ import hexlet.code.Utils;
 
 public class GCD {
 
+    static final String DESCRIPTION = "Find the greatest common divisor of given numbers.";
+
     public static void runGCD() {
 
         final int parameter1 = 1; //constant to define the minimum of a random number, can be modified
         final int parameter2 = 10; //constant to define the maximum of power of number, can be modified
-        final int amountOfGameRounds = 3;
-        final int questionAndAnswer = 2;
-        final String description = "Find the greatest common divisor of given numbers.";
 
-        String[][] tasks = new String[amountOfGameRounds][questionAndAnswer];
+        String[][] tasks = new String[Engine.ROUNDS][Engine.QUESTION_AND_ANSWER];
 
-        for (int round = 0; round < amountOfGameRounds; round++) {
+        for (int round = 0; round < Engine.ROUNDS; round++) {
             int firstNumber = Utils.getRandomNumber(parameter1, parameter2);
             int secondNumber = Utils.getRandomNumber(parameter1, parameter2);
 
             String question = firstNumber + " " + secondNumber;
-            String answer = getGCD(firstNumber, secondNumber);
+            String answer = gcd(firstNumber, secondNumber);
 
             tasks[round][0] = question;
             tasks[round][1] = answer;
         }
-        Engine.gameRun(description, tasks);
+        Engine.gameRun(DESCRIPTION, tasks);
     }
 
-    private static String getGCD(int firstNumber, int secondNumber) {
+    private static String gcd(int firstNumber, int secondNumber) {
 
         while (firstNumber != 0 && secondNumber != 0) {
             if (firstNumber > secondNumber) {
