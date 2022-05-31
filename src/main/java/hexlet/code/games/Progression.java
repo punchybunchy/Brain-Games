@@ -30,7 +30,9 @@ public class Progression {
                 progressionArr[item] = Integer.toString(tempArray[item]);
             }
 
-            var question = String.join(" ", progressionArr[remotePosition]);
+            progressionArr[remotePosition] = "..";
+
+            var question = String.join(" ", progressionArr);
             var answer = Integer.toString(startNumber + progressionStep * remotePosition);
 
             tasks[round][0] = question;
