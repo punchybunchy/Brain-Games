@@ -10,26 +10,15 @@ public class Progression {
     public static void runProgression() {
         final int parameter1 = 1; //constant to define the minimum of a random number, can be modified
         final int parameter2 = 10; //constant to define the maximum of power of number, can be modified
-        final int parameter3 = 0; //constant to define a random number generator to remote position in progression
-        final int parameter4 = 9; //constant to define  random number generator to remote position in progression
         final int progressionLength = 10;
 
         String[][] tasks = new String[Engine.ROUNDS][Engine.QUESTION_AND_ANSWER];
         for (int round = 0; round < Engine.ROUNDS; round++) {
             int startNumber = Utils.getRandomNumber(parameter1, parameter2);
             int progressionStep = Utils.getRandomNumber(parameter1, parameter2);
-            int remotePosition = Utils.getRandomNumber(parameter3, parameter4);
+            int remotePosition = Utils.getRandomNumber(parameter1, parameter2) - 1;
 
-            int[] tempArray = new int[progressionLength];
-            String[] progressionArr = new String[progressionLength];
-            tempArray[0] = startNumber;
-            progressionArr[0] = Integer.toString(tempArray[0]);
-
-            for (int item = 1; item < progressionLength; item++) {
-                tempArray[item] = tempArray[item - 1] + progressionStep;
-                progressionArr[item] = Integer.toString(tempArray[item]);
-            }
-
+            var progressionArr = getProgression(startNumber, progressionStep, progressionLength);
             progressionArr[remotePosition] = "..";
 
             var question = String.join(" ", progressionArr);
@@ -39,6 +28,17 @@ public class Progression {
             tasks[round][1] = answer;
         }
         Engine.gameRun(DESCRIPTION, tasks);
+    }
+
+    private static String[] getProgression(int startNumber, int progressionStep, int progressionLength) {
+        String[] progressionArr = new String[progressionLength];
+        progressionArr[0] = Integer.toString(startNumber);
+
+        for (int item = 1; item < progressionLength; item++) {
+            var currentItem = Integer.parseInt(progressionArr[item - 1]) + progressionStep;
+            progressionArr[item] = Integer.toString(currentItem);
+        }
+        return progressionArr;
     }
 
 }

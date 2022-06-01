@@ -19,9 +19,10 @@ public class Calc {
             int firstNumber = Utils.getRandomNumber(parameter1, parameter2);
             int secondNumber = Utils.getRandomNumber(parameter1, parameter2);
             int randomOperatorIndex = Utils.getRandomNumber(parameter1, OPERATORS.length) - 1;
+            char operator = OPERATORS[randomOperatorIndex];
 
-            String question = firstNumber + " " + OPERATORS[randomOperatorIndex] + " " + secondNumber;
-            String answer = Integer.toString(calculateAnswer(firstNumber, secondNumber, randomOperatorIndex));
+            String question = firstNumber + " " + operator + " " + secondNumber;
+            String answer = Integer.toString(calculateAnswer(firstNumber, secondNumber, operator));
 
             tasks[round][0] = question;
             tasks[round][1] = answer;
@@ -29,10 +30,9 @@ public class Calc {
         Engine.gameRun(DESCRIPTION, tasks);
     }
 
-    private static int calculateAnswer(int firstNumber, int secondNumber, int randomIndex) {
+    private static int calculateAnswer(int firstNumber, int secondNumber, char operator) {
 
-        char operator = OPERATORS[randomIndex];
-        int calculatedAnswer = 0;
+        int calculatedAnswer;
 
         switch (operator) {
             case '+':
@@ -44,7 +44,8 @@ public class Calc {
             case '*':
                 calculatedAnswer = firstNumber * secondNumber;
                 break;
-            default: System.out.println("Unknown operator entered");
+            default:
+                throw new RuntimeException("Unknown operator entered: " + operator);
         }
         return calculatedAnswer;
     }
